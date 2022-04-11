@@ -1,0 +1,18 @@
+{
+    "dev":{
+        "Example":{
+            "Setting3": "Dev environment value",
+            "Array":["a", "b","c"]
+        }
+    },
+    "stage":{
+        "Example":{
+            "Setting3": "Stage environment value "
+        }
+    },
+    "prod":{
+        "Example":{
+            "Setting3": "Prod environment value"
+        }
+    }
+}

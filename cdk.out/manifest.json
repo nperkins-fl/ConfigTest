@@ -1,0 +1,216 @@
+{
+  "version": "16.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "ConfigTestStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "ConfigTestStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "ConfigTestStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "ConfigTestStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e8cd4fff7c4ac1d6464d497f67f7878f571f6a5266c07d20d0c86d1f99f2d4dd.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "ConfigTestStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "ConfigTestStack.assets"
+      ],
+      "metadata": {
+        "/ConfigTestStack/ExampleTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "ExampleTable114D508F"
+            }
+          }
+        ],
+        "/ConfigTestStack/ExampleTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExampleTable114D508F"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestLambdas/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestLambdasServiceRole7580D4DC"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestLambdas/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestLambdasServiceRoleDefaultPolicyDE4695D2"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestLambdas/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestLambdas0DB5C960"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGateway6E77D5FA"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/CloudWatchRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayCloudWatchRoleC9E79807"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/Account": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayAccountB35CAEDD"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayDeploymentFEE4044219b6311194735440c0c3d72e0606816c"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayDeploymentStageprod4E28EDC1"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayEndpoint660D0611"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/Default/{proxy+}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayproxy1C3CBF4E"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/Default/{proxy+}/ANY/ApiPermission.ConfigTestStackConfigTestApiGateway069F4003.ANY..{proxy+}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayproxyANYApiPermissionConfigTestStackConfigTestApiGateway069F4003ANYproxyD8875AAA"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/Default/{proxy+}/ANY/ApiPermission.Test.ConfigTestStackConfigTestApiGateway069F4003.ANY..{proxy+}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayproxyANYApiPermissionTestConfigTestStackConfigTestApiGateway069F4003ANYproxyA0692C79"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/Default/{proxy+}/ANY/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayproxyANYEFB79DB4"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/Default/ANY/ApiPermission.ConfigTestStackConfigTestApiGateway069F4003.ANY..": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayANYApiPermissionConfigTestStackConfigTestApiGateway069F4003ANYD5BEF252"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/Default/ANY/ApiPermission.Test.ConfigTestStackConfigTestApiGateway069F4003.ANY..": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayANYApiPermissionTestConfigTestStackConfigTestApiGateway069F4003ANY3449D1E7"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/Default/ANY/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayANY42C550FE"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/ConfigTestUsagePlan/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayConfigTestUsagePlan766652A5"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/ConfigTestUsagePlan/UsagePlanKeyResource:ConfigTestStackConfigTestApiGatewayConfigTestApiKeyB12263E6": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayConfigTestUsagePlanUsagePlanKeyResourceConfigTestStackConfigTestApiGatewayConfigTestApiKeyB12263E6CCCF315A"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/ConfigTestApiKey/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayConfigTestApiKeyABBB09B6"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/EventsRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayEventsRole2D4B76A1"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestApiGateway/EventsRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestApiGatewayEventsRoleDefaultPolicy5AA1C5DA"
+          }
+        ],
+        "/ConfigTestStack/ConfigTestEvent/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ConfigTestEvent49B65EF9"
+          }
+        ],
+        "/ConfigTestStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/ConfigTestStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/ConfigTestStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/ConfigTestStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "ConfigTestStack"
+    }
+  }
+}
