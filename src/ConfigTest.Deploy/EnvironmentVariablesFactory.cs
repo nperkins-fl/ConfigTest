@@ -5,12 +5,12 @@ namespace ConfigTest.Deploy;
 
 public static class EnvironmentVariablesFactory
 {
-    public static Dictionary<string, string> AddEnvironmentVariables(Stack stack)
+    public static Dictionary<string, string> AddEnvironmentVariables(Stack stack, string environmentName)
     {
         var environmentVariables = new Dictionary<string, string>();
-        var targetEnvironment = Environment.GetEnvironmentVariable("TARGET_ENVIRONMENT") ?? "dev";
+        environmentVariables.Add("ASPNETCORE_ENVIRONMENT", environmentName);
 
-        if (stack.Node.TryGetContext(targetEnvironment) is IDictionary context)
+        if (stack.Node.TryGetContext(environmentName) is IDictionary context)
         {
             AddDictionary(environmentVariables, context, string.Empty);
         }
