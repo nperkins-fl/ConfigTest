@@ -7,7 +7,6 @@ using Amazon.CDK.AWS.IAM;
 using Amazon.CDK.AWS.Lambda;
 using Amazon.CDK.AWS.SecretsManager;
 using Constructs;
-using Attribute = Amazon.CDK.AWS.DynamoDB.Attribute;
 using Stack = Amazon.CDK.Stack;
 
 namespace ConfigTest.Deploy;
@@ -43,39 +42,18 @@ public class ConfigTestStack : Stack
                                                                    },
                                                          Resources = new []{"*"}
                                                      }));
-        
-        var table = new Table(this,
-                              "ExampleTable",
-                              new TableProps
-                              {
-                                  BillingMode = BillingMode.PAY_PER_REQUEST,
-                                  Encryption = TableEncryption.DEFAULT,
-                                  PartitionKey =
-                                      new Attribute { Name = "Product", Type = AttributeType.STRING },
-                                  SortKey = new Attribute
-                                            {
-                                                Name = "ApplicationPageUrl",
-                                                Type = AttributeType.STRING
-                                            },
-                                  TableClass = TableClass.STANDARD,
-                                  TableName = "ExampleTable"
-                              });
+
+        var table = Table.FromTableName(this, "ExampleTable", "ExampleTable");
 
         table.GrantReadWriteData(function);
 
-        var existingSecret =
-            Secret.FromSecretNameV2(this, "ExistingSecret", $"{environmentName}/ConfigTest/Example__Setting1");
+        var secret1 = Secret.FromSecretNameV2(this, "ExistingSecret", $"{environmentName}/ConfigTest/Example__Setting1");
 
-        existingSecret.GrantRead(function);
+        secret1.GrantRead(function);
 
-        var newSecret = new Secret(this,
-                                "ExampleSecret",
-                                new SecretProps
-                                {
-                                    SecretName = $"{environmentName}/ConfigTest/CDK_Secret"
-                                });
+        var secret2 = Secret.FromSecretNameV2(this, "TestingSecret", $"{environmentName}/ConfigTest/CDK_Secret");
 
-        newSecret.GrantRead(function);
+        secret2.GrantRead(function);
         
         var api = new LambdaRestApi(this,
                                     "ConfigTestApiGateway",
@@ -117,12 +95,12 @@ public class ConfigTestStack : Stack
                                         Method = "GET"
                                     });
 
-        var rule = new Rule(this,
-                            "ConfigTestEvent",
-                            new RuleProps
-                            {
-                                Schedule = Schedule.Rate(Duration.Hours(12)),
-                                Targets = new IRuleTarget[] { target }
-                            });
+        new Rule(this,
+                "ConfigTestEvent",
+                new RuleProps
+                {
+                    Schedule = Schedule.Rate(Duration.Hours(12)),
+                    Targets = new IRuleTarget[] { target }
+                });
     }
 }
