@@ -18,7 +18,7 @@ namespace ConfigTest.Deploy
                                             "pipeline",
                                             new CodePipelineProps
                                             {
-                                                PipelineName = "ConfigTest Pipeline",
+                                                PipelineName = "ConfigTestPipeline",
                                                 Synth = new ShellStep("Synth",
                                                                       new ShellStepProps
                                                                       {
@@ -27,7 +27,7 @@ namespace ConfigTest.Deploy
                                                                                   .GitHub("nperkins-fl/ConfigTest",
                                                                                       "pipeline"),
                                                                           Commands = new string[]
-                                                                              { "npm install -g aws-cdk", "cdk synth" }
+                                                                              { "/usr/local/bin/dotnet-install.sh --channel LTS", "npm install -g aws-cdk", "cdk synth" }
                                                                       })
                                             });
 
