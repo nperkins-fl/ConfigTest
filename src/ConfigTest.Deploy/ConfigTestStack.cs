@@ -13,7 +13,7 @@ namespace ConfigTest.Deploy;
 
 public class ConfigTestStack : Stack
 {
-    public ConfigTestStack(Construct scope, string id, IStackProps props)
+    public ConfigTestStack(Construct scope, string id, IStackProps? props = null)
         : base(scope, id, props)
     {
         var environmentName = System.Environment.GetEnvironmentVariable("TARGET_ENVIRONMENT") ?? "dev";
