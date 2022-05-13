@@ -19,6 +19,7 @@ namespace ConfigTest.Deploy
                                             new CodePipelineProps
                                             {
                                                 PipelineName = "ConfigTestPipeline",
+                                                CrossAccountKeys = true,
                                                 Synth = new ShellStep("Synth",
                                                                       new ShellStepProps
                                                                       {
