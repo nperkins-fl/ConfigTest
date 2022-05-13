@@ -8,7 +8,9 @@
         "Example__Setting3": "Environment Value",
         "Example__Array__0": "Environment Value 1",
         "Example__Array__1": "Environment Value 2",
-        "Example__Array__2": "Environment Value 3"
+        "Example__Array__2": "Environment Value 3",
+        "Example__Dictionary__Key1__Property1": "K1P1",
+        "Example__Dictionary__Key1__Property2": "K1P2"
       },
       "applicationUrl": "https://localhost:61961;http://localhost:61962"
     },
