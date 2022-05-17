@@ -18,9 +18,15 @@ public class LambdaEntryPoint : APIGatewayProxyFunction
         builder
             .ConfigureAppConfiguration((hostingContext, config) =>
                                        {
+                                           var partialConfig = config.Build();
+
+                                           var app = partialConfig.GetValue<string>("ApplicationName")
+                                                     ?? hostingContext.HostingEnvironment.ApplicationName;
+
                                            var env = hostingContext.HostingEnvironment.EnvironmentName;
-                                           var app = hostingContext.HostingEnvironment.ApplicationName;
-                                           var secretPrefix = $"{env}/{app}/";
+
+                                           var secretPrefix = $"{app}/{env}/";
+
                                            config.AddSecretsManager(configurator: opts =>
                                                                     {
                                                                         opts.SecretFilter =

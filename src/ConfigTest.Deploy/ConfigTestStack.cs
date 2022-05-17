@@ -47,13 +47,9 @@ public class ConfigTestStack : Stack
 
         table.GrantReadWriteData(function);
 
-        var secret1 = Secret.FromSecretNameV2(this, "ExistingSecret", $"{environmentName}/ConfigTest/Example__Setting1");
+        var secret = Secret.FromSecretNameV2(this, "ExistingSecret", $"ConfigTest/{environmentName}/Example__Setting1");
 
-        secret1.GrantRead(function);
-
-        var secret2 = Secret.FromSecretNameV2(this, "TestingSecret", $"{environmentName}/ConfigTest/CDK_Secret");
-
-        secret2.GrantRead(function);
+        secret.GrantRead(function);
         
         var api = new LambdaRestApi(this,
                                     "ConfigTestApiGateway",
